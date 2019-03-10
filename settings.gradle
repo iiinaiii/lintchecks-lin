@@ -1,0 +1,3 @@
+rootProject.name = 'lintchecks_lin'
+include 'checks'
+
