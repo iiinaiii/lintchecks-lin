@@ -86,4 +86,26 @@ class UseCaseFunctionDetectorTest : LintTest {
         ) toHave NoErrors
     }
 
+    @Test
+    fun whenNoUseCase_containsNotSuspendFunction_detectsNoErrors() {
+        expect(
+            """
+                package foo
+
+                class SampleLogic @Inject constructor(
+                    private val sampleRepository: SampleRepository
+                ) {
+
+                    operator fun invoke(id: Int): Result<SampleData> {
+                        val result = sampleRepository.getSampleData(id)
+                        return when (result) {
+                            is Result.Success -> Result.Success(result.data.toSampleData())
+                            is Result.Error -> result
+                        }.exhaustive
+                    }
+                }
+            """.inKotlin
+        ) toHave NoErrors
+    }
+
 }
