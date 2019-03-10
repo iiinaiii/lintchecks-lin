@@ -2,15 +2,20 @@ package com.iiinaiii.lint
 
 import com.android.tools.lint.detector.api.Scope
 import com.serchinastico.lin.annotations.Detector
-import com.serchinastico.lin.dsl.*
+import com.serchinastico.lin.dsl.detector
+import com.serchinastico.lin.dsl.issue
 import org.jetbrains.uast.getValueIfStringLiteral
 
 @Detector
 fun checkHttpDirect() = detector(
     issue(
         scope = Scope.JAVA_FILE_SCOPE,
-        description = "<Lin> Write http url direct in code",
-        explanation = "<Lin> Don't write http/https url direct in code."
+        description = "Don't Write http url direct in code",
+        explanation = """
+            | API endpoint should be managed by one class.
+            | To avoid ship application with development environment endpoint,
+            | it shouldn't write http/https url direct in code.
+            | """.trimMargin()
     )
 ) {
     literalExpression {
