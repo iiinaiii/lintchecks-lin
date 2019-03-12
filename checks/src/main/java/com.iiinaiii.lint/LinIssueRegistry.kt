@@ -12,6 +12,7 @@ class LinIssueRegistry : IssueRegistry() {
         get() = -1
 
     override val issues: List<Issue> = listOf(
-        CheckHttpDirectDetector.issue
+        CheckHttpDirectDetector.issue,
+        CheckUseCaseSuspendFunctionDetector.issue
     )
 }
