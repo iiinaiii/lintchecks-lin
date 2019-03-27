@@ -3,28 +3,6 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'java'
 
-//sourceSets {
-//    main {
-//        java {
-//            srcDirs = ["checks/src/main/java", "checks/build/generated/source/kapt/main"]
-//        }
-//    }
-//}
-
-//sourceSets {
-//    main {
-//        java {
-//            srcDirs = ["src"]
-//        }
-//    }
-//}
-
-//sourceSets {
-//    main.java.srcDirs += 'build/generated/source/kapt/main/'
-//}
-
-//sourceSets.main.java.srcDirs += "checks/build/generated/source/kapt/main"
-
 configurations {
     lintChecks
 }
@@ -43,12 +21,7 @@ dependencies {
     compileOnly "com.github.serchinastico.lin:annotations:$lin_version"
     kapt "com.github.serchinastico.lin:processor:$lin_version"
     testCompile "com.github.serchinastico.lin:test:$lin_version"
-
-    lintChecks files(jar)
 }
-
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
 
 jar {
     manifest {
