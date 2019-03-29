@@ -15,6 +15,7 @@ class UseCaseFunctionDetectorTest : LintTest {
     @Test
     fun whenContainsNotSuspendFunction_detectsErrors() {
         expect(
+            // language=kotlin
             """
                 package foo
 
@@ -37,6 +38,7 @@ class UseCaseFunctionDetectorTest : LintTest {
     @Test
     fun whenContainsMixFunction_detectsErrors() {
         expect(
+            // language=kotlin
             """
                 package foo
 
@@ -67,6 +69,7 @@ class UseCaseFunctionDetectorTest : LintTest {
     @Test
     fun whenContainsOnlySuspendFunction_detectsNoErrors() {
         expect(
+            // language=kotlin
             """
                 package foo
 
@@ -89,6 +92,7 @@ class UseCaseFunctionDetectorTest : LintTest {
     @Test
     fun whenNoUseCase_containsNotSuspendFunction_detectsNoErrors() {
         expect(
+            // language=kotlin
             """
                 package foo
 

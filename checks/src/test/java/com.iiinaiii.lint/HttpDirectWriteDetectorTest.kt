@@ -13,12 +13,14 @@ class HttpDirectWriteDetectorTest : LintTest {
     @Test
     fun inJavaClass_whenContainsHttp_detectsErrors() {
         expect(
+            // language=java
             """
                 package foo;
-                 import android.app.Activity;
+                import android.app.Activity;
                 import android.os.Bundle;
                 import android.view.View;
-                 public class TestClass extends Activity {
+
+                public class TestClass extends Activity {
                    private String url = "http://sample.com";
                 }
             """.inJava
@@ -28,16 +30,17 @@ class HttpDirectWriteDetectorTest : LintTest {
     @Test
     fun inJavaClass_whenNotContainsHttp_detectsNoErrors() {
         expect(
+            // language=java
             """
-                |package foo;
-                |
-                |import android.app.Activity;
-                |import android.os.Bundle;
-                |import android.view.View;
-                |
-                |public class TestClass extends Activity {
-                |  private String value = "some value";
-                |}
+                package foo;
+
+                import android.app.Activity;
+                import android.os.Bundle;
+                import android.view.View;
+
+                public class TestClass extends Activity {
+                  private String value = "some value";
+                }
             """.inJava
         ) toHave NoErrors
     }
@@ -45,14 +48,15 @@ class HttpDirectWriteDetectorTest : LintTest {
     @Test
     fun inKotlinClass_whenContainsHttp_detectsErrors() {
         expect(
+            // language=kotlin
             """
-                |package foo
-                |
-                |import android.view.View
-                |
-                |class TestClass {
-                |   private val url: String = "http://sample.com"
-                |}
+                package foo
+
+                import android.view.View
+
+                class TestClass {
+                   private val url: String = "http://sample.com"
+                }
             """.inKotlin
         ) toHave SomeError("src/foo/TestClass.kt")
     }
@@ -60,14 +64,15 @@ class HttpDirectWriteDetectorTest : LintTest {
     @Test
     fun inKotlinClass_whenNotContainsHttp_detectsNoErrors() {
         expect(
+            // language=kotlin
             """
-                |package foo
-                |
-                |import android.view.View
-                |
-                |class TestClass {
-                |   private val value: String = "some value"
-                |}
+                package foo
+
+                import android.view.View
+
+                class TestClass {
+                   private val value: String = "some value"
+                }
             """.inKotlin
         ) toHave NoErrors
     }
